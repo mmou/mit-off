@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Post new Freet</h1>
+    <form name="input" action="create" method="post">
+      New Freet: <input type="text" name="freet">
+      <input type="submit" value="Submit">
+    </form>
+    <h1> Edit or Delete Freets </h1>
+      <% for(var i = 0; i < individuals.length; i++){ %>
+        <% if (individuals[i].name != ""){ %>
+          <div>
+
+          <form id="editpost" action="/posts/edit/<%= individuals[i]._id%>" method="post" style="display:inline-block">
+          <input type="text" name="freet" value="<%= individuals[i].post %>">
+          <input type="submit" value="Update">
+          </form>
+
+            <form name="delete_<%= individuals[i]._id%>" action="/posts/delete/<%= individuals[i]._id%>" method="post" style="display:inline-block">
+             <input type="submit" value="Delete"> 
+           </form>
+          </div>
+        <%}%>
+      <%}%>
+    <div><a href="/"> Go back to home page </a></div>
+  </body>
+</html>

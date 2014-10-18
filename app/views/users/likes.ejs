@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <center>
+    <div style="display:inline-block"><a href="/"> Home </a></div>
+    <div style="display:inline-block"><a href="/posts/new">Add, edit, or delete posts </a></div>
+    <h1><%= title %></h1>
+</center>
+  <div class="container">
+    <% for(var i = 0; i < individuals.length; i++){ %>
+    	<div>
+
+        <div style="display:inline-block">
+        <%= individuals[i].name === "" ? "Anonymous" : individuals[i].name %> says "<%= individuals[i].post %>"
+        </div>
+      </div>
+    <%}%>
+  </div>
+ </center>
+  </body>
+</html>

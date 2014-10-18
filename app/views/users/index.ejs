@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+      <a href="/"> Go to home page </a> | 
+      <a href="/posts/"> View News Feed </a>
+    </div>
+    <h1><%= title %></h1>
+    <h3><%= message %></h3>
+
+    <% for(var i = 0; i < individuals.length; i++){ %>
+      <div>
+        <% if (individuals[i].name !== current_user.name){ %>
+          <form name="follow_<%= individuals[i]._id%>" action="/users/follow/<%= individuals[i]._id%>" method="post" style="display:inline-block">
+             <input type="submit" value="<%= following.indexOf(individuals[i]._id) === -1 ? "Follow" : "Following" %>"> 
+          </form>
+            <a href="/users/likes/<%= individuals[i]._id%>"><%= individuals[i].name %><a href="/users/likes/<%= individuals[i]._id%>">
+          <%}%>
+      </div>
+    <%}%>    
+  </body>
+</html>

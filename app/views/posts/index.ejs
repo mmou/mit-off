@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <center>
+    <div style="display:inline-block"><a href="/"> Home </a></div> | 
+    <div style="display:inline-block"><a href="/posts/new">Add, edit, or delete posts </a></div> |
+    <div style="display:inline-block"><a href="/users/"> Follow friends</a></div> |
+    <div style="display:inline-block"><a href="/users/likes/<%= user_id %>">View liked tweets </a></div> |
+    <form name="logout" action="<%= route %>" method="<%= method %>" style="display:inline-block">
+   <input type="submit" value="<%= loginstatus %>">     
+   </form>
+    <h1><%= title %></h1>
+    <h2> News Feed </h2>
+</center>
+  <div class="container">
+    <% for(var i = 0; i < individuals.length; i++){ %>
+    	<div>
+
+          <form name="like_<%= individuals[i]._id%>" action="/posts/like/<%= individuals[i]._id%>" method="post" style="display:inline-block">
+             <input type="submit" value="Like"> 
+          </form>
+
+        <div style="display:inline-block">
+        <b><%= individuals[i].name === "" ? "Anonymous" : individuals[i].name %> says "<%= individuals[i].post %>" </b> | 
+        </div>
+
+        <div style="display:inline-block;color:#00B7FF" >
+          Number of likes: <%= individuals[i].likers.length %>
+        </div>
+        <br>
+        <div style="display:inline-block">
+          <% if (individuals[i].likers.length !== 0){ %>
+            People who like this: 
+            <% for(var j=0; j < individuals[i].likers.length; j++) { %>
+                <%= individuals[i].likers[j].name %> 
+                <% if (j !== individuals[i].likers.length - 1){%>|<%}%>
+            <%}%>
+          <%}%>
+        </div>
+      </div>
+      <br>
+    <%}%>
+  </div>
+ </center>
+  </body>
+</html>
